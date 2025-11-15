@@ -5,21 +5,25 @@ Dự án đăng ký tham gia chương trình RISE SPACE sử dụng Next.js, Pri
 ## 🚀 Cài Đặt & Chạy Project
 
 ### Yêu Cầu
+
 - **Node.js** (v18 trở lên)
 - **Docker Desktop** (để chạy MySQL)
 
 ### Bước 1: Clone Project
+
 ```bash
 git clone <repo-url>
 cd register
 ```
 
 ### Bước 2: Cài Dependencies
+
 ```bash
 npm install
 ```
 
 ### Bước 3: Setup Environment
+
 ```bash
 # Copy file .env.example thành .env.local
 cp .env.example .env.local
@@ -29,6 +33,7 @@ cp .env.example .env.local
 ```
 
 ### Bước 4: Khởi Động MySQL với Docker
+
 ```bash
 # Lần đầu: Tạo và chạy MySQL container
 docker-compose up -d
@@ -38,12 +43,14 @@ docker ps
 ```
 
 ### Bước 5: Tạo Database Schema
+
 ```bash
 # Đợi 10 giây để MySQL khởi động hoàn tất
 npx prisma db push
 ```
 
 ### Bước 6: Chạy Dev Server
+
 ```bash
 npm run dev
 ```
@@ -55,16 +62,19 @@ Mở [http://localhost:3000](http://localhost:3000) để xem website.
 ## 📦 Quản Lý Docker
 
 ### Dừng MySQL
+
 ```bash
 docker-compose down
 ```
 
 ### Khởi động lại MySQL
+
 ```bash
 docker-compose up -d
 ```
 
 ### Xóa Database (Reset toàn bộ data)
+
 ```bash
 docker-compose down -v
 docker-compose up -d
@@ -72,6 +82,7 @@ npx prisma db push
 ```
 
 ### Xem data trong MySQL
+
 ```bash
 docker exec risespace-mysql mysql -uroot -p123456 risespace -e "SELECT * FROM registrations;"
 ```
@@ -81,6 +92,7 @@ docker exec risespace-mysql mysql -uroot -p123456 risespace -e "SELECT * FROM re
 ## 🐳 Deploy với Docker
 
 ### Build Docker Image
+
 ```bash
 # Build image cho production
 docker build -t form-register .
@@ -90,6 +102,7 @@ docker build -t form-register:v1.0 .
 ```
 
 ### Chạy Container
+
 ```bash
 # Chạy với environment variables
 docker run -p 3000:3000 \
@@ -102,6 +115,7 @@ docker run -p 3000:3000 --env-file .env form-register
 ```
 
 ### Chạy Toàn Bộ Stack (App + MySQL)
+
 ```bash
 # Thêm service app vào docker-compose.yml rồi chạy:
 docker-compose up -d
@@ -114,16 +128,19 @@ docker-compose up -d
 ## 🔍 API Endpoints
 
 ### Test kết nối Database
+
 ```
 GET http://localhost:3000/api/test-db
 ```
 
 ### Lưu form đăng ký
+
 ```
 POST http://localhost:3000/api/registration
 ```
 
 ### Xem tất cả đăng ký
+
 ```
 GET http://localhost:3000/api/registrations
 ```
@@ -158,13 +175,16 @@ GET http://localhost:3000/api/registrations
 ## 🛠️ Troubleshooting
 
 ### Port 3306 đã bị sử dụng
+
 Tắt MySQL cũ trên máy hoặc đổi port trong `docker-compose.yml`:
+
 ```yaml
 ports:
-  - "3307:3306"  # Đổi port sang 3307
+  - "3307:3306" # Đổi port sang 3307
 ```
 
 ### Không kết nối được MySQL
+
 ```bash
 # Restart Docker container
 docker-compose restart
@@ -174,6 +194,7 @@ docker logs risespace-mysql
 ```
 
 ### Dev server báo lỗi
+
 ```bash
 # Xóa cache Next.js
 rm -rf .next
