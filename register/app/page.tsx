@@ -1,12 +1,12 @@
 import Image from "next/image";
 import HeroSection from "./components/HomeSection";
-// import EventsShowcase from "./components/EventsShowcase";
+import EventsShowcase from "./components/EventsShowcase";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      {/* <EventsShowcase /> */}
+      <EventsShowcase />
       
       {/* Footer */}
       <footer className="bg-foreground text-background py-8">

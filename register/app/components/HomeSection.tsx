@@ -1,36 +1,30 @@
-import Button from "../components/ui/button";
+import BackgroundSlider from "./client/BackgroundSlider";
 import Link from "next/link";
-import Image from "next/image";
-import heroImage from "@/assets/hero-bg.jpg";
+import Button from "./ui/button";
 
+const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 
 const HeroSection = () => {
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src={heroImage} 
-          alt="Events showcase" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/70 to-accent/80" />
-      </div>
+      <BackgroundSlider images={images} interval={5000} />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center text-white animate-fade-in">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Những Sự Kiện<br />
-          <span className="text-secondary">Đáng Nhớ</span>
+          <span className="text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            Warmly Welcome to Phoenix House
+          </span>
         </h1>
-        <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-white/90">
-          Khám phá hành trình của chúng tôi qua những sự kiện ý nghĩa và kết nối cộng đồng
+        <p className="text-xl md:text-2xl mb-12 leading-tight max-w-3xl mx-auto text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          Khám phá hành trình của chúng tôi qua những sự kiện ý nghĩa và kết nối
+          cộng đồng
         </p>
         <Link href="/registration">
-          <Button 
-            size="lg" 
-            className="bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-6 text-lg shadow-elegant transition-all hover:scale-105"
+          <Button
+            size="lg"
+            className="bg-linear-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-6 text-lg shadow-2xl transition-all hover:scale-105"
           >
             Đăng Ký Ngay
           </Button>
