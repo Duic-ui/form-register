@@ -78,6 +78,39 @@ docker exec risespace-mysql mysql -uroot -p123456 risespace -e "SELECT * FROM re
 
 ---
 
+## 🐳 Deploy với Docker
+
+### Build Docker Image
+```bash
+# Build image cho production
+docker build -t form-register .
+
+# Build với custom tag
+docker build -t form-register:v1.0 .
+```
+
+### Chạy Container
+```bash
+# Chạy với environment variables
+docker run -p 3000:3000 \
+  -e DATABASE_URL="mysql://root:123456@host.docker.internal:3306/risespace" \
+  -e NODE_ENV=production \
+  form-register
+
+# Hoặc dùng file .env
+docker run -p 3000:3000 --env-file .env form-register
+```
+
+### Chạy Toàn Bộ Stack (App + MySQL)
+```bash
+# Thêm service app vào docker-compose.yml rồi chạy:
+docker-compose up -d
+```
+
+**Lưu ý:** Trong Docker container, thay `localhost` bằng `host.docker.internal` để kết nối MySQL trên host machine.
+
+---
+
 ## 🔍 API Endpoints
 
 ### Test kết nối Database
