@@ -1,36 +1,169 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RISE SPACE - Form Đăng Ký Sinh Viên
 
-## Getting Started
+Dự án đăng ký tham gia chương trình RISE SPACE sử dụng Next.js, Prisma ORM và MySQL.
 
-First, run the development server:
+## 🚀 Cài Đặt & Chạy Project
 
+### Yêu Cầu
+- **Node.js** (v18 trở lên)
+- **Docker Desktop** (để chạy MySQL)
+
+### Bước 1: Clone Project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repo-url>
+cd register
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Bước 2: Cài Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Bước 3: Setup Environment
+```bash
+# Copy file .env.example thành .env.local
+cp .env.example .env.local
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# File .env.local đã có sẵn cấu hình:
+# DATABASE_URL="mysql://root:123456@localhost:3306/risespace"
+```
 
-## Learn More
+### Bước 4: Khởi Động MySQL với Docker
+```bash
+# Lần đầu: Tạo và chạy MySQL container
+docker-compose up -d
 
-To learn more about Next.js, take a look at the following resources:
+# Kiểm tra MySQL đã chạy chưa
+docker ps
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Bước 5: Tạo Database Schema
+```bash
+# Đợi 10 giây để MySQL khởi động hoàn tất
+npx prisma db push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Bước 6: Chạy Dev Server
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+Mở [http://localhost:3000](http://localhost:3000) để xem website.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Quản Lý Docker
+
+### Dừng MySQL
+```bash
+docker-compose down
+```
+
+### Khởi động lại MySQL
+```bash
+docker-compose up -d
+```
+
+### Xóa Database (Reset toàn bộ data)
+```bash
+docker-compose down -v
+docker-compose up -d
+npx prisma db push
+```
+
+### Xem data trong MySQL
+```bash
+docker exec risespace-mysql mysql -uroot -p123456 risespace -e "SELECT * FROM registrations;"
+```
+
+---
+
+## 🔍 API Endpoints
+
+### Test kết nối Database
+```
+GET http://localhost:3000/api/test-db
+```
+
+### Lưu form đăng ký
+```
+POST http://localhost:3000/api/registration
+```
+
+### Xem tất cả đăng ký
+```
+GET http://localhost:3000/api/registrations
+```
+
+---
+
+## 📁 Cấu Trúc Project
+
+```
+├── app/
+│   ├── api/
+│   │   ├── registration/       # API lưu form
+│   │   ├── registrations/      # API xem data
+│   │   └── test-db/            # API test kết nối
+│   ├── components/
+│   │   └── client/
+│   │       ├── BackgroundSlider.tsx
+│   │       └── MultiStepForm.tsx
+│   ├── registration/           # Trang form đăng ký
+│   └── page.tsx                # Trang chủ
+├── lib/
+│   └── prisma.ts               # Prisma client
+├── prisma/
+│   └── schema.prisma           # Database schema
+├── docker-compose.yml          # Config MySQL Docker
+├── init.sql                    # Script khởi tạo database
+└── .env.local                  # Config database (không push lên Git)
+```
+
+---
+
+## 🛠️ Troubleshooting
+
+### Port 3306 đã bị sử dụng
+Tắt MySQL cũ trên máy hoặc đổi port trong `docker-compose.yml`:
+```yaml
+ports:
+  - "3307:3306"  # Đổi port sang 3307
+```
+
+### Không kết nối được MySQL
+```bash
+# Restart Docker container
+docker-compose restart
+
+# Xem log
+docker logs risespace-mysql
+```
+
+### Dev server báo lỗi
+```bash
+# Xóa cache Next.js
+rm -rf .next
+npm run dev
+```
+
+---
+
+## 👥 Chia Sẻ Project Với Đồng Đội
+
+1. Push code lên Git (file `.env.local` không được push)
+2. Đồng đội clone project
+3. Chạy các lệnh setup từ Bước 2 đến Bước 6
+4. Mỗi người có database riêng trên máy mình
+
+**Lưu ý:** Database không tự động sync giữa các máy. Nếu cần chia sẻ data, export/import file SQL hoặc dùng database cloud chung.
+
+---
+
+## 📝 Tech Stack
+
+- **Frontend:** Next.js 16, React 19, TailwindCSS v4
+- **Backend:** Next.js API Routes
+- **Database:** MySQL 8.0 (Docker)
+- **ORM:** Prisma
+- **Forms:** Multi-step form với validation

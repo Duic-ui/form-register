@@ -9,10 +9,26 @@ const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 const RegistrationPage = () => {
   const router = useRouter();
 
-  const handleSubmit = (data: any) => {
-    console.log("Form submitted:", data);
-    alert("Đăng ký thành công! Cảm ơn bạn đã đăng ký.");
-    router.push("/");
+  const handleSubmit = async (data: any) => {
+    try {
+      const response = await fetch("/api/registration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Đăng ký thành công! Cảm ơn bạn đã đăng ký.");
+        router.push("/");
+      } else {
+        alert("Có lỗi xảy ra! Vui lòng thử lại.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Không thể kết nối đến server!");
+    }
   };
 
   return (
