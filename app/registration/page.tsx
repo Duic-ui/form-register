@@ -53,34 +53,34 @@ const RegistrationPage = () => {
         {/* Background with Slider */}
         <BackgroundSlider images={images} interval={5000} />
 
-      {/* Content Overlay */}
-      <motion.div
-        className="relative z-10 min-h-screen py-12 px-4 md:px-6"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <div className="container mx-auto">
-          {/* Form */}
-          <MultiStepForm onSubmit={handleSubmit} />
+        {/* Content Overlay */}
+        <motion.div
+          className="relative z-10 min-h-screen py-12 px-4 md:px-6"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="container mx-auto">
+            {/* Form */}
+            <MultiStepForm onSubmit={handleSubmit} />
 
-          {/* Back Link */}
-          <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <button
-              onClick={() => router.push("/")}
-              className="text-white hover:text-orange-300 font-semibold transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            {/* Back Link */}
+            <motion.div
+              className="text-center mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
             >
-              ← Quay về trang chủ
-            </button>
-          </motion.div>
-        </div>
+              <button
+                onClick={() => router.push("/")}
+                className="text-white hover:text-orange-300 font-semibold transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+              >
+                ← Quay về trang chủ
+              </button>
+            </motion.div>
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
     </>
   );
 };
