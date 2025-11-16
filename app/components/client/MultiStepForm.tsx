@@ -36,7 +36,10 @@ const MultiStepForm = ({ onSubmit }: MultiStepFormProps) => {
     z.object({}),
     // Step 1: Personal Information
     z.object({
-      fullName: z.string().min(1, "Vui lòng nhập họ và tên"),
+      fullName: z
+        .string()
+        .min(1, "Vui lòng nhập họ và tên")
+        .max(100, "Họ và tên không được vượt quá 100 ký tự"),
       studentId: z
         .string()
         .min(1, "Vui lòng nhập MSSV")
@@ -48,10 +51,12 @@ const MultiStepForm = ({ onSubmit }: MultiStepFormProps) => {
       email: z
         .string()
         .min(1, "Vui lòng nhập email")
+        .max(100, "Email không được vượt quá 100 ký tự")
         .email("Email không hợp lệ"),
       facebookLink: z
         .string()
         .min(1, "Vui lòng nhập link Facebook")
+        .max(200, "Link Facebook không được vượt quá 200 ký tự")
         .url("Link không hợp lệ"),
       house: z.string().min(1, "Vui lòng chọn nhà"),
     }),
@@ -70,12 +75,10 @@ const MultiStepForm = ({ onSubmit }: MultiStepFormProps) => {
       goal: z
         .string()
         .min(1, "Vui lòng nhập mục tiêu")
-        .min(10, "Mục tiêu phải có ít nhất 10 ký tự")
         .max(250, "Mục tiêu không được vượt quá 250 ký tự"),
       expectation: z
         .string()
         .min(1, "Vui lòng nhập kỳ vọng")
-        .min(10, "Kỳ vọng phải có ít nhất 10 ký tự")
         .max(250, "Kỳ vọng không được vượt quá 250 ký tự"),
     }),
     // Step 5: Confirmation
@@ -103,30 +106,35 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
           label: "Họ và Tên của bạn là?",
           type: "text",
           required: true,
+          placeholder: "Nguyễn Văn A",
         },
         {
           name: "studentId",
           label: "MSSV của bạn là? (VD: SE210210)",
           type: "text",
           required: true,
+          placeholder: "SE210210",
         },
         {
           name: "phone",
           label: "SĐT của bạn là?",
           type: "tel",
           required: true,
+          placeholder: "0123456789",
         },
         {
           name: "email",
           label: "Email của bạn là gì?",
           type: "email",
           required: true,
+          placeholder: "example@example.com",
         },
         {
           name: "facebookLink",
           label: "Link Facebook của bạn là?",
           type: "url",
           required: true,
+          placeholder: "https://www.facebook.com/phoenixhousefptuhcmc",
         },
         {
           name: "house",
@@ -170,12 +178,16 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
           label: "Mục tiêu của bạn khi tham gia dự án RISE SPACE lần này?",
           type: "textarea",
           required: true,
+          placeholder: "Vui lòng nhập mục tiêu của bạn",
+          maxLength: 250,
         },
         {
           name: "expectation",
           label: "Bạn kỳ vọng sẽ đạt được những gì sau khi tham gia dự án?",
           type: "textarea",
           required: true,
+          placeholder: "Vui lòng nhập kỳ vọng của bạn",
+          maxLength: 250,
         },
       ],
     },
@@ -335,7 +347,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                     {field.type === "radio" ? (
                       <>
                         <div className="space-y-3">
-                          {field.options?.map((option) => (
+                          {(field as any).options?.map((option: string) => (
                             <label
                               key={option}
                               className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-orange-50 hover:border-orange-500 transition-all ${
@@ -384,7 +396,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                           }`}
                         >
                           <option value="">-- Vui lòng chọn --</option>
-                          {field.options?.map((option) => (
+                          {(field as any).options?.map((option: string) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -398,20 +410,40 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                       </>
                     ) : field.type === "textarea" ? (
                       <>
-                        <textarea
-                          id={field.name}
-                          name={field.name}
-                          value={formData[field.name as keyof typeof formData]}
-                          onChange={handleChange}
-                          required={field.required}
-                          rows={4}
-                          className={`w-full px-4 py-3 text-base border rounded-lg focus:ring-2 focus:outline-none transition-all resize-none bg-white text-gray-900 placeholder:text-gray-500 ${
-                            errors[field.name]
-                              ? "border-red-500 ring-2 ring-red-200 focus:ring-red-500 focus:border-red-500"
-                              : "border-gray-300 focus:ring-orange-500 focus:border-orange-500"
-                          }`}
-                          placeholder={`Nhập ${field.label.toLowerCase()}`}
-                        />
+                        <div className="relative">
+                          <textarea
+                            id={field.name}
+                            name={field.name}
+                            value={
+                              formData[field.name as keyof typeof formData]
+                            }
+                            onChange={handleChange}
+                            required={field.required}
+                            rows={4}
+                            maxLength={(field as any).maxLength}
+                            className={`w-full px-4 py-3 pb-8 text-base border rounded-lg focus:ring-2 focus:outline-none transition-all resize-none bg-white text-gray-900 placeholder:text-gray-500 ${
+                              errors[field.name]
+                                ? "border-red-500 ring-2 ring-red-200 focus:ring-red-500 focus:border-red-500"
+                                : "border-gray-300 focus:ring-orange-500 focus:border-orange-500"
+                            }`}
+                            placeholder={
+                              (field as any).placeholder ||
+                              `Nhập ${field.label.toLowerCase()}`
+                            }
+                          />
+                          {(field as any).maxLength && (
+                            <div className="absolute bottom-2 right-3 text-xs text-gray-400 pointer-events-none">
+                              {
+                                (
+                                  formData[
+                                    field.name as keyof typeof formData
+                                  ] as string
+                                ).length
+                              }
+                              /{(field as any).maxLength}
+                            </div>
+                          )}
+                        </div>
                         {errors[field.name] && (
                           <p className="mt-2 text-sm text-red-500 font-medium">
                             {errors[field.name]}
@@ -432,7 +464,10 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                               ? "border-red-500 ring-2 ring-red-200 focus:ring-red-500 focus:border-red-500"
                               : "border-gray-300 dark:border-gray-500 focus:ring-orange-500 focus:border-orange-500"
                           }`}
-                          placeholder={`Nhập ${field.label.toLowerCase()}`}
+                          placeholder={
+                            (field as any).placeholder ||
+                            `Nhập ${field.label.toLowerCase()}`
+                          }
                         />
                         {errors[field.name] && (
                           <p className="mt-2 text-sm text-red-500 font-medium">
@@ -452,7 +487,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                 type="button"
                 onClick={handlePrev}
                 disabled={currentStep === 0}
-                className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base text-gray-600 font-semibold rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto justify-center"
+                className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto justify-center border-1 border-gray-300 shadow-sm"
               >
                 <span>←</span>{" "}
                 <span className="hidden sm:inline">Quay Lại</span>
@@ -467,7 +502,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base bg-linear-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-lg w-full sm:w-auto justify-center"
+                  className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-linear-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-md hover:shadow-lg w-full sm:w-auto justify-center"
                 >
                   <span className="hidden sm:inline">Tiếp Theo</span>
                   <span className="sm:hidden">Tiếp theo</span> <span>→</span>
@@ -475,7 +510,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
               ) : (
                 <button
                   type="submit"
-                  className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base bg-linear-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-lg w-full sm:w-auto justify-center"
+                  className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-linear-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-md hover:shadow-lg w-full sm:w-auto justify-center"
                 >
                   <span className="hidden sm:inline">Đăng ký</span>
                   <span className="sm:hidden">Đăng ký</span> <span>✓</span>

@@ -30,6 +30,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Prevent image download and right-click */
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+}
+
+/* Allow clicks on interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  pointer-events: auto;
+  user-select: auto;
+}
+
 .__next-dev-overlay button {
   display: none !important;
 }
