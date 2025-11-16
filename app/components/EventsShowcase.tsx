@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { Card, CardContent } from "@/app/components/ui/card";
+import { motion } from "framer-motion";
 
 const events = [
   {
@@ -35,7 +38,13 @@ const EventsShowcase = () => {
   return (
     <section className="py-20 px-6 bg-linear-to-b from-orange-50 to-white">
       <div className="container mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
             Sự Kiện Của <span className="text-orange-600">Chúng Tôi</span>
           </h2>
@@ -43,41 +52,46 @@ const EventsShowcase = () => {
             Những khoảnh khắc đáng nhớ và câu chuyện truyền cảm hứng từ các sự
             kiện chúng tôi đã tổ chức
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event, index) => (
-            <Card
+            <motion.div
               key={event.id}
-              className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
             >
-              <div className="relative overflow-hidden">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  width={400}
-                  height={256}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-linear-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                    {event.category}
-                  </span>
+              <Card className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    width={400}
+                    height={256}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-linear-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                      {event.category}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <CardContent className="p-6">
-                <p className="text-sm text-orange-600 font-semibold mb-2">
-                  {event.date}
-                </p>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-orange-600 transition-colors">
-                  {event.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {event.description}
-                </p>
-              </CardContent>
-            </Card>
+                <CardContent className="p-6 bg-white">
+                  <p className="text-sm text-orange-600 font-semibold mb-2">
+                    {event.date}
+                  </p>
+                  <h3 className="text-2xl font-bold mb-3 text-gray-900 group-hover:text-orange-600 transition-colors">
+                    {event.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {event.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
