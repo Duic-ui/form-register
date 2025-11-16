@@ -12,6 +12,7 @@ const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 const RegistrationPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (data: any) => {
     setIsLoading(true);
@@ -25,23 +26,29 @@ const RegistrationPage = () => {
       const result = await response.json();
 
       if (result.success) {
-        alert("Đăng ký thành công! Cảm ơn bạn đã đăng ký.");
-        router.push("/");
+        // Show success modal in loading screen
+        setShowSuccess(true);
+        // Wait 5 seconds then redirect
+        setTimeout(() => {
+          setIsLoading(false);
+          setShowSuccess(false);
+          router.push("/");
+        }, 5000);
       } else {
+        setIsLoading(false);
         alert("Có lỗi xảy ra! Vui lòng thử lại.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Không thể kết nối đến server!");
-    } finally {
       setIsLoading(false);
+      alert("Không thể kết nối đến server!");
     }
   };
 
   return (
     <>
       {/* Loading Screen */}
-      {isLoading && <LoadingScreen />}
+      {isLoading && <LoadingScreen showSuccess={showSuccess} />}
 
       <motion.div
         className="relative min-h-screen overflow-hidden bg-white"
