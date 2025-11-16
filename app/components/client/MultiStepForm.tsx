@@ -43,7 +43,7 @@ const MultiStepForm = ({ onSubmit }: MultiStepFormProps) => {
       studentId: z
         .string()
         .min(1, "Vui lòng nhập MSSV")
-        .regex(/^[A-Z]{2}\d{6}$/, "MSSV không đúng định dạng (VD: SE210210)"),
+        .regex(/^[A-Za-z]{2}\d{6}$/, "MSSV không đúng định dạng"),
       phone: z
         .string()
         .min(1, "Vui lòng nhập số điện thoại")
@@ -224,6 +224,41 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
     }
   };
 
+  // Check email existence via API
+  const checkEmailExists = async (email: string) => {
+    if (!email) return false;
+    try {
+      const res = await fetch(`/api/check-email?email=${encodeURIComponent(
+        email
+      )}`);
+      if (!res.ok) {
+        // treat non-OK as failure to check
+        return Promise.reject(new Error("Không thể kiểm tra email"));
+      }
+      const json = await res.json();
+      return !!json?.exists;
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  };
+
+  const handleEmailBlur = async (value: string) => {
+    // clear previous email error first
+    if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+
+    const email = value?.trim();
+    if (!email) return;
+
+    try {
+      const exists = await checkEmailExists(email);
+      if (exists) {
+        setErrors((prev) => ({ ...prev, email: "Email đã được sử dụng" }));
+      }
+    } catch (err: any) {
+      setErrors((prev) => ({ ...prev, email: "Không thể kiểm tra email" }));
+    }
+  };
+
   const handleNext = () => {
     // Validate current step before moving forward
     const currentSchema = validationSchemas[currentStep];
@@ -245,9 +280,27 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
 
     // Clear errors and proceed
     setErrors({});
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
+    // If this is the Personal Information step, ensure email isn't taken
+    const proceed = async () => {
+      if (currentStep === 1) {
+        try {
+          const exists = await checkEmailExists(formData.email);
+          if (exists) {
+            setErrors({ email: "Email đã được sử dụng" });
+            return;
+          }
+        } catch (err) {
+          setErrors({ email: "Không thể kiểm tra email" });
+          return;
+        }
+      }
+
+      if (currentStep < steps.length - 1) {
+        setCurrentStep(currentStep + 1);
+      }
+    };
+
+    void proceed();
   };
 
   const handlePrev = () => {
@@ -257,7 +310,23 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
   };
 
   const handleFinalSubmit = () => {
-    onSubmit(formData);
+    const submit = async () => {
+      // Final check for email before submit
+      try {
+        const exists = await checkEmailExists(formData.email);
+        if (exists) {
+          setErrors({ email: "Email đã được sử dụng" });
+          return;
+        }
+      } catch (err) {
+        setErrors({ email: "Không thể kiểm tra email" });
+        return;
+      }
+
+      onSubmit(formData);
+    };
+
+    void submit();
   };
 
   const currentStepData = steps[currentStep];
@@ -458,6 +527,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                           name={field.name}
                           value={formData[field.name as keyof typeof formData]}
                           onChange={handleChange}
+                          onBlur={(e) => field.name === "email" && handleEmailBlur(e.currentTarget.value)}
                           required={field.required}
                           className={`w-full px-4 py-3 text-base border rounded-lg focus:ring-2 focus:outline-none transition-all bg-white text-gray-900 placeholder:text-gray-400 dark:placeholder:text-gray-500 ${
                             errors[field.name]
@@ -487,7 +557,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                 type="button"
                 onClick={handlePrev}
                 disabled={currentStep === 0}
-                className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto justify-center border-1 border-gray-300 shadow-sm"
+                className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto justify-center border border-gray-300 shadow-sm"
               >
                 <span>←</span>{" "}
                 <span className="hidden sm:inline">Quay Lại</span>
