@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import { Card, CardContent } from "@/app/components/ui/card";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const events = [
   {
     id: 1,
+    slug: "workshop-cong-nghe-2024",
     title: "Workshop Công Nghệ 2024",
     date: "15 tháng 3, 2024",
     description:
@@ -16,20 +18,22 @@ const events = [
   },
   {
     id: 2,
+    slug: "hoi-thao-chuyen-de",
     title: "Hội Thảo Chuyên Đề",
     date: "28 tháng 2, 2024",
     description:
       "Hội thảo chuyên sâu với sự tham gia của các chuyên gia hàng đầu, trao đổi về những thách thức và cơ hội trong thời đại số.",
-    image: "/phoenix1.jpg",
+    image: "/phoenix2.jpg",
     category: "Hội thảo",
   },
   {
     id: 3,
+    slug: "su-kien-ket-noi",
     title: "Sự Kiện Kết Nối",
     date: "10 tháng 1, 2024",
     description:
       "Một buổi tối đầy ý nghĩa với networking session, giúp kết nối cộng đồng và tạo dựng mối quan hệ bền vững.",
-    image: "/phoenix1.jpg",
+    image: "/phoenix3.jpg",
     category: "Networking",
   },
 ];
@@ -64,7 +68,8 @@ const EventsShowcase = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
             >
-              <Card className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <Link href={`/blog/${event.slug}`} className="block">
+                <Card className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                 <div className="relative overflow-hidden">
                   <Image
                     src={event.image}
@@ -90,7 +95,8 @@ const EventsShowcase = () => {
                     {event.description}
                   </p>
                 </CardContent>
-              </Card>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </div>
