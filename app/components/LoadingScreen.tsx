@@ -106,10 +106,10 @@ const LoadingScreen = ({ showSuccess = false }: LoadingScreenProps) => {
                 initial={{ scale: 0.5, y: 100, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.8, y: 50, opacity: 0 }}
-                transition={{ 
-                  type: "spring", 
+                transition={{
+                  type: "spring",
                   duration: 0.6,
-                  bounce: 0.4
+                  bounce: 0.4,
                 }}
               >
                 {/* Decorative circles */}
@@ -121,7 +121,12 @@ const LoadingScreen = ({ showSuccess = false }: LoadingScreenProps) => {
                   className="relative w-24 h-24 bg-linear-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg"
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.2, type: "spring", duration: 0.8, bounce: 0.5 }}
+                  transition={{
+                    delay: 0.2,
+                    type: "spring",
+                    duration: 0.8,
+                    bounce: 0.5,
+                  }}
                 >
                   <motion.svg
                     className="w-12 h-12 text-white"
@@ -180,7 +185,11 @@ const LoadingScreen = ({ showSuccess = false }: LoadingScreenProps) => {
                 >
                   <motion.span
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     ⟳
                   </motion.span>
