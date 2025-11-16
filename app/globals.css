@@ -29,3 +29,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.__next-dev-overlay button {
+  display: none !important;
+}
+
+#__next-build-watcher,
+#__next-route-announcer {
+  display: none !important;
+}

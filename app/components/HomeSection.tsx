@@ -1,6 +1,9 @@
+"use client";
+
 import BackgroundSlider from "./client/BackgroundSlider";
 import Link from "next/link";
 import Button from "./ui/button";
+import { motion } from "framer-motion";
 
 const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 
@@ -11,25 +14,48 @@ const HeroSection = () => {
       <BackgroundSlider images={images} interval={5000} />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center text-white animate-fade-in">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+      <motion.div
+        className="relative z-10 container mx-auto px-6 text-center text-white"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.h1
+          className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <span className="text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Warmly Welcome to Phoenix House
           </span>
-        </h1>
-        <p className="text-xl md:text-2xl mb-12 leading-tight max-w-3xl mx-auto text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        </motion.h1>
+        <motion.p
+          className="text-xl md:text-2xl mb-12 leading-tight max-w-3xl mx-auto text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           Khám phá hành trình của chúng tôi qua những sự kiện ý nghĩa và kết nối
           cộng đồng
-        </p>
-        <Link href="/registration">
-          <Button
-            size="lg"
-            className="bg-linear-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-6 text-lg shadow-2xl transition-all hover:scale-105"
-          >
-            Đăng Ký Ngay
-          </Button>
-        </Link>
-      </div>
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Link href="/registration">
+            <Button
+              size="lg"
+              className="bg-linear-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-6 text-lg shadow-2xl transition-all"
+            >
+              Đăng Ký Ngay
+            </Button>
+          </Link>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
