@@ -2,16 +2,19 @@
 
 import BackgroundSlider from "./client/BackgroundSlider";
 import Link from "next/link";
-import Button from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 
 const HomeSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <BackgroundSlider images={images} interval={5000} />
+      <div className="absolute inset-0 w-full h-full">
+        <BackgroundSlider images={images} interval={5000} />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
 
       {/* Content */}
       <motion.div
@@ -26,12 +29,12 @@ const HomeSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          <span className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Warmly Welcome to Phoenix House
           </span>
         </motion.h1>
         <motion.p
-          className="text-xl md:text-2xl mb-12 leading-tight max-w-3xl mx-auto text-white-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          className="text-xl md:text-2xl mb-12 leading-tight max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -49,7 +52,7 @@ const HomeSection = () => {
           <Link href="/registration">
             <Button
               size="lg"
-              className="bg-linear-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-6 text-lg shadow-2xl transition-all"
+              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-6 text-lg shadow-2xl transition-all"
             >
               Đăng Ký Ngay
             </Button>

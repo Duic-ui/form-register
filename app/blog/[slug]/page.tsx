@@ -2,9 +2,9 @@ import { getBlogBySlug } from "@/lib/blogs";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import CardStack from "@/app/components/blog/CardStack";
-import Carousel3D from "@/app/components/blog/Carousel3D";
-import NormalCarousel from "@/app/components/blog/NormalCarousel";
+import CardStack from "@/components/blog/CardStack";
+import Carousel3D from "@/components/blog/Carousel3D";
+import NormalCarousel from "@/components/blog/NormalCarousel";
 
 type Props = { params: Promise<{ slug: string }> | { slug: string } };
 
