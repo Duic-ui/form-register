@@ -228,9 +228,9 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
   const checkEmailExists = async (email: string) => {
     if (!email) return false;
     try {
-      const res = await fetch(`/api/check-email?email=${encodeURIComponent(
-        email
-      )}`);
+      const res = await fetch(
+        `/api/check-email?email=${encodeURIComponent(email)}`
+      );
       if (!res.ok) {
         // treat non-OK as failure to check
         return Promise.reject(new Error("Không thể kiểm tra email"));
@@ -527,7 +527,10 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                           name={field.name}
                           value={formData[field.name as keyof typeof formData]}
                           onChange={handleChange}
-                          onBlur={(e) => field.name === "email" && handleEmailBlur(e.currentTarget.value)}
+                          onBlur={(e) =>
+                            field.name === "email" &&
+                            handleEmailBlur(e.currentTarget.value)
+                          }
                           required={field.required}
                           className={`w-full px-4 py-3 text-base border rounded-lg focus:ring-2 focus:outline-none transition-all bg-white text-gray-900 placeholder:text-gray-400 dark:placeholder:text-gray-500 ${
                             errors[field.name]

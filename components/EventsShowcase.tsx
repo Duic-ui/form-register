@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Card, CardContent } from "@/app/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -24,7 +25,7 @@ const events = [
 
 const EventsShowcase = () => {
   return (
-    <section className="py-20 px-6 bg-linear-to-b from-orange-50 to-white">
+    <section className="py-20 px-6 bg-gradient-to-b from-orange-50 to-white">
       <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -63,9 +64,12 @@ const EventsShowcase = () => {
                       className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-linear-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                      <Badge
+                        variant="default"
+                        className="bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
+                      >
                         Event
-                      </span>
+                      </Badge>
                     </div>
                   </div>
                   <CardContent className="p-6 bg-white">

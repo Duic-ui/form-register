@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import MultiStepForm from "@/app/components/client/MultiStepForm";
-import BackgroundSlider from "@/app/components/client/BackgroundSlider";
-import LoadingScreen from "@/app/components/LoadingScreen";
+import MultiStepForm from "@/components/client/MultiStepForm";
+import BackgroundSlider from "@/components/client/BackgroundSlider";
+import LoadingScreen from "@/components/LoadingScreen";
 import { motion } from "framer-motion";
 
 const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
