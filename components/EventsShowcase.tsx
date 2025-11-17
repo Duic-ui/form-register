@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { getAllEvents } from "@/lib/blogs";
 
 const events = [
   {
@@ -53,7 +54,7 @@ const EventsShowcase = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
             >
-              <Link href={`/blog/${event.slug}`} className="block">
+              <Link href={`/${event.slug}`} className="block">
                 <Card className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                   <div className="relative overflow-hidden">
                     <Image

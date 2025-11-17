@@ -57,3 +57,25 @@ export async function getAllBlogsMeta(): Promise<BlogMeta[]> {
   );
   return metas.filter(Boolean) as BlogMeta[];
 }
+
+export async function getAllEvents() {
+  const dir = path.join(process.cwd(), "content/blogs");
+  const files = await fs.readdir(dir);
+  const events = await Promise.all(
+    files
+      .filter((file) => file.endsWith(".json"))
+      .map(async (file) => {
+        const filePath = path.join(dir, file);
+        const raw = await fs.readFile(filePath, "utf8");
+        const data = JSON.parse(raw);
+        return {
+          slug: data.slug,
+          title: data.title,
+          date: data.date,
+          excerpt: data.excerpt,
+          image: data.image,
+        };
+      })
+  );
+  return events;
+}
