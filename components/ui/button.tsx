@@ -36,12 +36,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const classes = cn(baseClasses, variantMap[variant], sizeMap[size], className);
 
     if (asChild && React.isValidElement(children)) {
-      // when using asChild we merge classes and props into the child element
-      // we avoid forwarding the ref into arbitrary child elements to keep typings simple
-      return React.cloneElement(children as any, {
-        className: cn((children as any).props?.className, classes),
+      const child = children as React.ReactElement;
+      return React.cloneElement(child, {
+        className: cn(child.props?.className, classes),
         ...props,
-      } as any);
+      });
     }
 
     return (

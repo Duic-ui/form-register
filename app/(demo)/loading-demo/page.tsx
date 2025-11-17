@@ -1,6 +1,6 @@
 "use client";
 
-import LoadingScreen from "@/app/components/LoadingScreen";
+import LoadingScreen from "@/components/registration/LoadingScreen";
 
 const LoadingDemoPage = () => {
   return <LoadingScreen />;

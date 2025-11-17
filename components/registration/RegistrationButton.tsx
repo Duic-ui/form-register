@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../components/ui/button";
+
+import Button from "@/components/ui/button";
+
 import RegistrationModal from "./RegistrationModal";
 
 const RegistrationButton = () => {

@@ -1,9 +1,10 @@
 "use client";
 
-import BackgroundSlider from "./client/BackgroundSlider";
 import Link from "next/link";
-import Button from "./ui/button";
 import { motion } from "framer-motion";
+
+import BackgroundSlider from "@/components/shared/BackgroundSlider";
+import Button from "@/components/ui/button";
 
 const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 
