@@ -1,10 +1,11 @@
-import HomeSection from "./components/HomeSection";
+import Image from "next/image";
+import HeroSection from "./components/HomeSection";
 import EventsShowcase from "./components/EventsShowcase";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <HomeSection />
+      <HeroSection />
       <EventsShowcase />
 
       {/* Footer */}

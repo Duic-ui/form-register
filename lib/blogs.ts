@@ -11,11 +11,21 @@ export type BlogMeta = {
   image?: string;
 };
 
-export type Blog = BlogMeta & { content: string };
+export type Blog = BlogMeta & {
+  content?: string;
+  carousel1?: string[];
+  content1?: string;
+  carousel2?: string[];
+  content2?: string;
+  carousel3?: string[];
+  content3?: string;
+};
 
 export async function getBlogSlugs(): Promise<string[]> {
   const files = await fs.readdir(BLOG_DIR);
-  return files.filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""));
+  return files
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => f.replace(/\.json$/, ""));
 }
 
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
@@ -34,7 +44,15 @@ export async function getAllBlogsMeta(): Promise<BlogMeta[]> {
   const metas = await Promise.all(
     slugs.map(async (s) => {
       const b = await getBlogBySlug(s);
-      return b ? { slug: b.slug, title: b.title, date: b.date, excerpt: b.excerpt, image: b.image } : null;
+      return b
+        ? {
+            slug: b.slug,
+            title: b.title,
+            date: b.date,
+            excerpt: b.excerpt,
+            image: b.image,
+          }
+        : null;
     })
   );
   return metas.filter(Boolean) as BlogMeta[];

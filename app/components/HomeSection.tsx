@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const images = ["/phoenix.jpg", "/phoenix1.jpg", "/phoenix2.jpg"];
 
-const HeroSection = () => {
+const HomeSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -67,4 +67,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HomeSection;

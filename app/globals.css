@@ -58,3 +58,76 @@ textarea {
 #__next-route-announcer {
   display: none !important;
 }
+
+/* Swiper custom styles */
+.swiper-horizontal-grid {
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.swiper-3d {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.swiper-normal {
+  width: 100%;
+}
+
+/* Swiper button styles */
+.swiper-button-next,
+.swiper-button-prev {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 24px;
+  border-radius: 50%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  color: #1f2937;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Swiper pagination styles */
+.swiper-pagination-bullet {
+  background: #9ca3af;
+  width: 8px;
+  height: 8px;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #f97316;
+  width: 32px;
+  border-radius: 4px;
+}
+
+/* Carousel 3D specific pagination */
+.swiper-3d .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.swiper-3d .swiper-pagination-bullet-active {
+  background: #ffffff;
+  border: 1px solid #ffffff;
+}
