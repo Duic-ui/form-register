@@ -16,7 +16,10 @@ const RegistrationButton = () => {
       >
         Đăng Ký Ngay
       </Button>
-      <RegistrationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <RegistrationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </>
   );
 };
