@@ -33,14 +33,17 @@ const Carousel3D = ({ images }: Carousel3DProps) => {
         className="swiper-3d"
       >
         {images.map((image, index) => (
-          <SwiperSlide key={index} className="w-[600px]!">
-            <div className="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-xl bg-white">
+          <SwiperSlide
+            key={index}
+            className="w-[90vw] max-w-[600px] sm:w-[500px] md:w-[600px]"
+          >
+            <div className="relative w-full h-[220px] sm:h-[320px] md:h-[400px] rounded-2xl overflow-hidden shadow-xl bg-white">
               <Image
                 src={image}
                 alt={`Slide ${index + 1}`}
                 fill
                 className="object-cover"
-                sizes="600px"
+                sizes="(max-width: 640px) 90vw, (max-width: 768px) 500px, 600px"
                 quality={100}
                 unoptimized
               />

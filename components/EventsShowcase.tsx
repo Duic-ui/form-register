@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { getAllEvents } from "@/lib/blogs";
 
 const events = [
   {
