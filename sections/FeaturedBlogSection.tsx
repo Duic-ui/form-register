@@ -31,7 +31,8 @@ export function FeaturedBlogSection() {
   return (
     <section
       id="blog"
-      className="phoenix-section relative mt-24 overflow-hidden rounded-[32px] border border-white/10 bg-[#0a0503] px-6 py-20 md:px-16"
+      data-scroll-offset="80"
+      className="phoenix-section relative mt-12 overflow-hidden rounded-[32px] border border-white/10 bg-[#0a0503] px-6 py-20 md:px-16"
     >
       <BackgroundGrid className="opacity-50" />
       <motion.div variants={stagger(0.15, 0.08)} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-10%" }}>

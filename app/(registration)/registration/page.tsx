@@ -52,7 +52,7 @@ const RegistrationPage = () => {
       {isLoading && <LoadingScreen showSuccess={showSuccess} />}
 
       <motion.div
-        className="relative min-h-screen overflow-hidden bg-white"
+        className="relative min-h-screen overflow-hidden bg-[#050505]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -60,6 +60,12 @@ const RegistrationPage = () => {
       >
         {/* Background with Slider */}
         <BackgroundSlider images={images} interval={5000} />
+
+        {/* Phoenix-themed overlay effects */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/95 via-[#090909]/90 to-[#050505]/95" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,0,0,0.15),transparent_55%),radial-gradient(circle_at_80%_0%,rgba(255,107,0,0.2),transparent_45%)]" />
+        </div>
 
         {/* Content Overlay */}
         <motion.div
@@ -81,7 +87,7 @@ const RegistrationPage = () => {
             >
               <button
                 onClick={() => router.push("/")}
-                className="text-white hover:text-orange-300 font-semibold transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+                className="text-white/80 hover:text-[#ff6b00] font-semibold transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] tracking-wide"
               >
                 ← Quay về trang chủ
               </button>

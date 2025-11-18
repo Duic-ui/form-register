@@ -54,9 +54,10 @@ export function PhoenixNavbar() {
         </div>
         <Button
           size="sm"
-          className="fire-border hidden rounded-full bg-gradient-to-r from-[#ff0000] via-[#ff6b00] to-[#ffd86b] text-black shadow-[0_0_20px_rgba(255,91,15,0.6)] md:inline-flex"
+          asChild
+          className="fire-border hidden rounded-full bg-gradient-to-r from-[#ff0000] via-[#ff6b00] to-[#ffd86b] text-black shadow-[0_0_20px_rgba(255,91,15,0.6)] tracking-tight md:inline-flex"
         >
-          Cháy lên
+          <Link href="/registration">Đăng kí Rise Space</Link>
         </Button>
       </nav>
     </motion.header>

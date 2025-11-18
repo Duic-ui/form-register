@@ -68,6 +68,11 @@ body {
   scroll-snap-stop: always;
 }
 
+/* Căn giữa section khi scroll đến */
+section[id] {
+  scroll-margin-top: calc(50vh - 100px);
+}
+
 .magicui-grid {
   position: relative;
   isolation: isolate;
@@ -164,6 +169,19 @@ body {
   100% {
     transform: translate3d(0, 0, 0);
   }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.animate-shine {
+  animation: shine 3s ease-in-out infinite;
 }
 
 .bento-card {
