@@ -15,7 +15,21 @@ const RegistrationPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSubmit = async (data: any) => {
+  interface RegistrationData {
+    fullName: string;
+    studentId: string;
+    phone: string;
+    email: string;
+    facebookLink: string;
+    house: string;
+    major: string;
+    experience: string;
+    goal: string;
+    expectation: string;
+    confirmation?: string;
+  }
+
+  const handleSubmit = async (data: RegistrationData) => {
     setIsLoading(true);
     try {
       const response = await fetch("/api/registration", {

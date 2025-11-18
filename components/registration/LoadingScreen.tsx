@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { GiFireBowl } from "react-icons/gi";
 import { FaFire } from "react-icons/fa";
 
 interface LoadingScreenProps {

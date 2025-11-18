@@ -4,8 +4,32 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 
+interface FormData {
+  fullName: string;
+  studentId: string;
+  phone: string;
+  email: string;
+  facebookLink: string;
+  house: string;
+  major: string;
+  experience: string;
+  goal: string;
+  expectation: string;
+  confirmation: string;
+}
+
+interface FormField {
+  name: keyof FormData;
+  label: string;
+  type: "text" | "email" | "tel" | "url" | "select" | "radio" | "textarea";
+  required: boolean;
+  placeholder?: string;
+  maxLength?: number;
+  options?: string[];
+}
+
 interface MultiStepFormProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (data: FormData) => void;
 }
 
 const MultiStepForm = ({ onSubmit }: MultiStepFormProps) => {
@@ -87,7 +111,14 @@ const MultiStepForm = ({ onSubmit }: MultiStepFormProps) => {
     }),
   ];
 
-  const steps = [
+  interface Step {
+    title: string;
+    isInfoOnly?: boolean;
+    content?: string;
+    fields: FormField[];
+  }
+
+  const steps: Step[] = [
     {
       title: "Thông Tin Sự Kiện",
       isInfoOnly: true,
@@ -233,7 +264,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
       // Extract errors from zod
       const newErrors: Record<string, string> = {};
       if (result.error?.issues) {
-        result.error.issues.forEach((issue: any) => {
+        result.error.issues.forEach((issue: z.ZodIssue) => {
           if (issue.path[0]) {
             newErrors[issue.path[0] as string] = issue.message;
           }
@@ -351,7 +382,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                     {field.type === "radio" ? (
                       <>
                         <div className="space-y-3">
-                          {(field as any).options?.map((option: string) => (
+                          {field.options?.map((option: string) => (
                             <label
                               key={option}
                               className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-all backdrop-blur-sm ${errors[field.name]
@@ -400,7 +431,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                             }`}
                         >
                           <option value="" className="bg-[#111111] text-white">-- Vui lòng chọn --</option>
-                          {(field as any).options?.map((option: string) => (
+                          {field.options?.map((option: string) => (
                             <option key={option} value={option} className="bg-[#111111] text-white">
                               {option}
                             </option>
@@ -424,17 +455,17 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                             onChange={handleChange}
                             required={field.required}
                             rows={4}
-                            maxLength={(field as any).maxLength}
+                            maxLength={field.maxLength}
                             className={`w-full px-4 py-3 pb-8 text-base border rounded-lg focus:ring-2 focus:outline-none transition-all resize-none bg-white/5 backdrop-blur-sm text-white placeholder:text-white/40 ${errors[field.name]
                               ? "border-[#ff0000] ring-2 ring-[#ff0000]/30 focus:ring-[#ff0000] focus:border-[#ff0000]"
                               : "border-white/20 focus:ring-[#ff6b00] focus:border-[#ff6b00]"
                               }`}
                             placeholder={
-                              (field as any).placeholder ||
+                              field.placeholder ||
                               `Nhập ${field.label.toLowerCase()}`
                             }
                           />
-                          {(field as any).maxLength && (
+                          {field.maxLength && (
                             <div className="absolute bottom-2 right-3 text-xs text-white/50 pointer-events-none">
                               {
                                 (
@@ -443,7 +474,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                                   ] as string
                                 ).length
                               }
-                              /{(field as any).maxLength}
+                              /{field.maxLength}
                             </div>
                           )}
                         </div>
@@ -467,7 +498,7 @@ Hãy điền đầy đủ thông tin trong các bước tiếp theo để hoàn 
                             : "border-white/20 focus:ring-[#ff6b00] focus:border-[#ff6b00]"
                             }`}
                           placeholder={
-                            (field as any).placeholder ||
+                            field.placeholder ||
                             `Nhập ${field.label.toLowerCase()}`
                           }
                         />

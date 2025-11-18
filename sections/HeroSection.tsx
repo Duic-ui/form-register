@@ -72,7 +72,7 @@ export function HeroSection() {
             </div>
           </div>
           <div className="absolute bottom-8 left-8 rounded-full border border-white/20 bg-black/60 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/80 backdrop-blur">
-            Phoenix's House
+            Phoenix&apos;s House
           </div>
         </motion.div>
       </motion.div>

@@ -93,7 +93,7 @@ export function MotionCarouselSection() {
           <GradientText>Không gian landing đầy chuyển động</GradientText>
         </h2>
         <p className="mx-auto max-w-3xl text-base text-white/75">
-          Kết hợp các thư viện motion hàng đầu để tạo trải nghiệm "bùng nổ năng lượng" đúng tinh thần Phoenix House.
+          Kết hợp các thư viện motion hàng đầu để tạo trải nghiệm &quot;bùng nổ năng lượng&quot; đúng tinh thần Phoenix House.
         </p>
       </div>
 
