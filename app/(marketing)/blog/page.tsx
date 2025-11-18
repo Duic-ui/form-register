@@ -10,14 +10,16 @@ import { id } from "zod/v4/locales";
 
 const blogPosts = [
   {
-    id: 7,
-    title: "Giải cờ TFT Phoenix Cup Mùa 03",
-    excerpt: "Sân chơi chiến thuật đẳng cấp với thể lệ mới mẻ đã quay trở lại.",
+    id: 6,
+    title: "Giải cờ TFT Phoenix Cup Mùa 01 - 02 - 03",
+    excerpt:
+      "Sân chơi trí tuệ, nơi ngọn lửa đam mê bùng cháy, kết nối cộng đồng qua từng trận đấu hấp dẫn.",
+
     tag: "Events",
-    href: "/blog/phoenix-cup-season-03",
+    href: "/blog/phoenix-cup",
   },
   {
-    id: 6,
+    id: 5,
     title: "Rise Space Season 01: Không gian để vươn mình",
     excerpt:
       "Không gian định hướng phát triển cá nhân và trải nghiệm học thuật top đầu dành cho tân sinh viên.",
@@ -25,20 +27,12 @@ const blogPosts = [
     href: "/blog/rise-space-season-01",
   },
   {
-    id: 5,
+    id: 4,
     title: "Digisurvive: Trải nghiệm sinh tồn trong thời đại mới",
     excerpt:
       "Hành trình thực tế, gay cấn và bổ ích, nơi Tân sinh viên K21 rèn luyện kỹ năng sinh tồn trong kỷ nguyên mới tại kỳ Rèn Luyện Tập Trung",
     tag: "Events",
     href: "/blog/digisurvive-season-01",
-  },
-  {
-    id: 4,
-    title: "Giải cờ TFT Phoenix Cup Mùa 01 & 02",
-    excerpt:
-      "Sân chơi trí tuệ, nơi ngọn lửa đam mê bùng cháy và kết nối cộng đồng qua từng trận đấu hấp dẫn.",
-    tag: "Events",
-    href: "/blog/phoenix-cup-season-01-and-02",
   },
   {
     id: 3,
