@@ -14,11 +14,6 @@ export function LenisProvider({ children }: LenisProviderProps) {
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 1.5,
     });
 
     let animationFrame: number;
@@ -50,10 +45,10 @@ export function LenisProvider({ children }: LenisProviderProps) {
             const currentScroll = lenis.scroll;
             // Tính vị trí tuyệt đối của element trong document
             const elementTop = rect.top + currentScroll;
-            
+
             // Lấy offset tùy chỉnh từ data attribute nếu có, mặc định là 0
-            const customOffset = targetElement.dataset.scrollOffset 
-              ? parseInt(targetElement.dataset.scrollOffset, 10) 
+            const customOffset = targetElement.dataset.scrollOffset
+              ? parseInt(targetElement.dataset.scrollOffset, 10)
               : 0;
 
             // Tính toán để căn giữa section trong viewport
@@ -62,10 +57,11 @@ export function LenisProvider({ children }: LenisProviderProps) {
             // Tính offset để phần giữa của section nằm ở giữa viewport
             // Nếu section cao hơn viewport, ta scroll đến đầu section
             // Nếu section thấp hơn viewport, ta căn giữa nó
-            const centerOffset = sectionHeight > viewportHeight 
-              ? 0  // Section lớn hơn viewport, scroll đến đầu
-              : (viewportHeight / 2) - (sectionHeight / 2);  // Căn giữa section
-            
+            const centerOffset =
+              sectionHeight > viewportHeight
+                ? 0 // Section lớn hơn viewport, scroll đến đầu
+                : viewportHeight / 2 - sectionHeight / 2; // Căn giữa section
+
             // Áp dụng offset tùy chỉnh nếu có (có thể dùng để điều chỉnh cho từng section)
             const finalOffset = centerOffset - customOffset;
 
@@ -90,4 +86,3 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
   return <>{children}</>;
 }
-
