@@ -1,8 +1,25 @@
 {
-  "slug": "blog-6",
-  "title": "Blog 6",
-  "date": "2024-07-01",
-  "excerpt": "Tóm tắt blog 6.",
-  "image": "/phoenix6.jpg",
-  "content": "Nội dung chi tiết cho blog 6. Mở file này để chỉnh sửa bài viết cụ thể." 
+  "title": "PHOENIX CUP",
+  "date": "2025-10-13",
+  "excerpt": "SÂN CHƠI TRÍ TUỆ, NƠI NGỌN LỬA ĐAM MÊ BÙNG CHÁY, KẾT NỐI CỘNG ĐỒNG QUA TỪNG TRẬN ĐẤU HẤP DẪN",
+  "image": "/phoenix-cup/ss3/logo.jpg",
+  "tag": "Events",
+  "carousel1": [
+    "/phoenix-cup/ss3/e.jpg",
+    "/phoenix-cup/ss3/e1.jpg",
+    "/phoenix-cup/ss3/e2.jpg",
+    "/phoenix-cup/ss3/e3.jpg",
+    "/phoenix-cup/ss3/e4.jpg",
+    "/phoenix-cup/ss3/e5.jpg",
+    "/phoenix-cup/ss3/e6.jpg"
+  ],
+  "content1": "Phoenix Cup là giải đấu cờ TFT (Teamfight Tactics) dành riêng cho cộng đồng sinh viên FPT University Hồ Chí Minh, nơi các chiến lược gia trẻ tuổi có cơ hội tranh tài, thể hiện bản lĩnh và tư duy chiến thuật đỉnh cao. Giải đấu không chỉ là sân chơi giải trí mà còn là nơi giao lưu, học hỏi, kết nối những người yêu thích bộ môn cờ TFT.",
+
+  "carousel3": [
+    "/phoenix-cup/ss1/logo1.jpg",
+    "/phoenix-cup/ss1/p.jpg",
+    "/phoenix-cup/ss2/logo.jpg",
+    "/phoenix-cup/ss2/p.jpg"
+  ],
+  "content3": "Phoenix Cup qua các mùa giải đã thu hút sự tham gia của đông đảo sinh viên với những trận đấu kịch tính và hấp dẫn. Mỗi mùa giải đều mang đến những trải nghiệm mới mẻ, từ việc cập nhật meta mới nhất của TFT đến những chiến thuật độc đáo mà các đội tuyển mang đến. Các đội thi đấu không chỉ để giành lấy vinh quang mà còn để học hỏi lẫn nhau, nâng cao kỹ năng và xây dựng tinh thần đồng đội."
 }

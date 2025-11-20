@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ const navLinks = [
 
 export function PhoenixNavbar() {
   const [atTop, setAtTop] = useState(true);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setAtTop(window.scrollY < 10);
@@ -34,24 +36,30 @@ export function PhoenixNavbar() {
         "rounded-full backdrop-blur-xl",
         atTop
           ? "border border-transparent bg-transparent"
-          : "border border-[#ff5b1f]/40 bg-gradient-to-r from-[#120302]/90 via-[#050505]/95 to-[#120302]/90 shadow-[0_20px_60px_rgba(255,68,0,0.35)] ring-1 ring-[#ff6b00]/30",
+          : "border border-[#ff5b1f]/40 bg-gradient-to-r from-[#120302]/90 via-[#050505]/95 to-[#120302]/90 shadow-[0_20px_60px_rgba(255,68,0,0.35)] ring-1 ring-[#ff6b00]/30"
       )}
     >
       <nav className="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.4em] text-white">
-        <Link href="#home" className="flex items-center gap-2 text-sm tracking-[0.6em]">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-sm tracking-[0.6em]"
+        >
           <GradientText className="text-base font-black">Phoenix</GradientText>
         </Link>
-        <div className="hidden flex-1 items-center justify-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-[11px] font-semibold uppercase tracking-[0.5em] text-white/70 transition hover:text-white"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        {/* Chỉ hiện navLinks nếu ở trang "/" */}
+        {pathname === "/" && (
+          <div className="hidden flex-1 items-center justify-center gap-6 md:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-[11px] font-semibold uppercase tracking-[0.5em] text-white/70 transition hover:text-white"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
         <Button
           size="sm"
           asChild
@@ -63,4 +71,3 @@ export function PhoenixNavbar() {
     </motion.header>
   );
 }
-

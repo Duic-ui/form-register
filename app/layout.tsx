@@ -21,7 +21,7 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Phoenix House – Phượng Hoàng Rực Lửa",
+  title: "Phoenix House",
   description:
     "Landing page Phoenix House với tinh thần tái sinh, quyền năng và bùng nổ năng lượng.",
 };

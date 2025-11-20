@@ -15,12 +15,21 @@ export default function Home() {
         <HeroSection />
         <FeaturedBlogSection />
         <MotionCarouselSection />
-        <FeatureSection />
+        {/* <FeatureSection /> */}
         <ShowcaseSection />
-        <CTASection />
+        {/* <CTASection /> */}
       </div>
       <footer className="mt-16 text-center text-xs uppercase tracking-[0.4em] text-white/50">
-        © 2025 Phoenix House · Rise Stronger
+        © 2025 Phoenix House
+        <br />
+        <a
+          href="https://www.facebook.com/phoenixhousefptuhcmc"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-2 text-white/70 hover:text-[#ff6b00] transition"
+        >
+          Fanpage: The Flaming Chickens
+        </a>
       </footer>
       <BackToTopButton />
     </main>
