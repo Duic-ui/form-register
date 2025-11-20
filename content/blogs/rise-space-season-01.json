@@ -1,8 +1,48 @@
 {
   "slug": "hoi-thao-chuyen-de",
-  "title": "Hội Thảo Chuyên Đề",
-  "date": "2024-02-28",
-  "excerpt": "Hội thảo chuyên sâu với các chuyên gia hàng đầu.",
+  "title": "RISE SPACE SEASON 01",
+  "date": "2025-10-13",
+  "excerpt": "SÂN CHƠI HỌC THUẬT TOP ĐẦU DÀNH CHO TÂN SINH VIÊN FPTU HCM",
   "image": "/phoenix2.jpg",
-  "content": "Hội Thảo Chuyên Đề\n\nBuổi hội thảo tập trung vào các xu hướng công nghệ và kinh nghiệm thực tế từ chuyên gia. Nội dung bao gồm case study và thảo luận nhóm."
+  "tag": "Academic",
+  "carousel1": [
+    "/rise-space-01/full.png",
+    "/rise-space-01/ta3.jpg",
+    "/rise-space-01/se12.png",
+    "/rise-space-01/ta1.jpg",
+    "/rise-space-01/ta2.jpg",
+    "/rise-space-01/se6.jpg",
+    "/rise-space-01/ta4.jpg",
+    "/rise-space-01/gd5.jpg",
+    "/rise-space-01/ta5.jpg",
+    "/rise-space-01/ta6.jpg",
+    "/rise-space-01/ta9.jpg"
+  ],
+  "content1": "\n\nRise Space Season 01 là chuỗi chia sẻ về học thuật được tổ chức dành riêng cho tân sinh viên FPT University Hồ Chí Minh. Chương trình nhằm mục đích tạo ra một sân chơi học thuật bổ ích, giúp các bạn sinh viên mới làm quen với môi trường đại học, phát triển kỹ năng mềm và mở rộng kiến thức chuyên ngành.",
+  "carousel2": [
+    "/rise-space-01/gd.jpg",
+    "/rise-space-01/gd1.jpg",
+    "/rise-space-01/se13.png",
+    "/rise-space-01/gd2.jpg",
+    "/rise-space-01/gd3.jpg",
+    "/rise-space-01/se14.png",
+    "/rise-space-01/gd4.jpg",
+    "/rise-space-01/gd6.jpg"
+  ],
+  "content2": "Các chủ đề chia sẻ chính:\n\n- Lập trình C cơ bản\n- Lập trình Python cơ bản\n- Nhập môn thiết kế mỹ thuật cơ bản",
+  "carousel3": [
+    "/rise-space-01/se.jpg",
+    "/rise-space-01/se1.jpg",
+    "/rise-space-01/se2.jpg",
+    "/rise-space-01/se3.jpg",
+    "/rise-space-01/se4.jpg",
+    "/rise-space-01/se5.jpg",
+    "/rise-space-01/se6.jpg",
+    "/rise-space-01/ta8.jpg",
+    "/rise-space-01/se7.jpg",
+    "/rise-space-01/se8.jpg",
+    "/rise-space-01/se9.jpg",
+    "/rise-space-01/se10.jpg"
+  ],
+  "content3": "Chia sẻ kinh nghiệm từ các anh chị sinh viên khóa trước, định hướng phát triển bản thân và xây dựng khả năng tự học tập hiệu quả trong môi trường đại học."
 }
