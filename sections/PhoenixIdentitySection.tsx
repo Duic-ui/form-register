@@ -12,8 +12,16 @@ export function PhoenixIdentitySection() {
       className="phoenix-section relative mt-24 overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-[#120101] via-[#050505] to-[#1a0a00] px-6 py-20 md:px-16"
     >
       <BackgroundGrid className="opacity-60" />
-      <Spotlight className="top-0 right-1/2" color="rgba(255,255,255,0.2)" size={360} />
-      <Spotlight className="bottom-[-120px] left-12 opacity-60" color="rgba(255,107,0,0.5)" size={420} />
+      <Spotlight
+        className="top-0 right-1/2"
+        color="rgba(255,255,255,0.2)"
+        size={360}
+      />
+      <Spotlight
+        className="bottom-[-120px] left-12 opacity-60"
+        color="rgba(255,107,0,0.5)"
+        size={420}
+      />
 
       <motion.div
         variants={stagger(0.18, 0.1)}
@@ -23,15 +31,18 @@ export function PhoenixIdentitySection() {
         className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]"
       >
         <motion.div variants={fadeUp(0)}>
-          <p className="text-sm uppercase tracking-[0.5em] text-white/60">Phoenix Identity</p>
+          <p className="text-sm uppercase tracking-[0.5em] text-white/60">
+            Phoenix Identity
+          </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight text-white md:text-5xl">
             <GradientText className="text-4xl font-black md:text-5xl">
               Sức mạnh tái sinh · Khí chất dẫn đầu
             </GradientText>
           </h2>
           <p className="mt-6 text-lg text-white/80">
-            Phượng hoàng lửa luôn đứng vững trước mọi thử thách, không ngừng tái sinh và bứt phá. Nhà
-            Phoenix sẽ bùng nổ tại Brothers &amp; Sisters 2025!
+            Phượng hoàng lửa luôn đứng vững trước mọi thử thách, không ngừng tái
+            sinh và bứt phá. Nhà Phoenix sẽ bùng nổ tại Brothers &amp; Sisters
+            2025!
           </p>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -50,7 +61,9 @@ export function PhoenixIdentitySection() {
                 variants={fadeUp(0.1)}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.45)]"
               >
-                <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                <h3 className="text-xl font-semibold text-white">
+                  {item.title}
+                </h3>
                 <p className="mt-3 text-sm text-white/70">{item.desc}</p>
               </motion.div>
             ))}
@@ -76,4 +89,3 @@ export function PhoenixIdentitySection() {
     </section>
   );
 }
-

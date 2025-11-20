@@ -32,7 +32,7 @@ const blogPosts = [
     excerpt:
       "Hành trình thực tế, gay cấn và bổ ích, nơi Tân sinh viên K21 rèn luyện kỹ năng sinh tồn trong kỷ nguyên mới tại kỳ Rèn Luyện Tập Trung",
     tag: "Events",
-    href: "/blog/digisurvive-season-01",
+    href: "/blog/digisurvive",
   },
   {
     id: 3,

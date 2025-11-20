@@ -10,31 +10,37 @@ const libraries = [
     name: "Framer Motion",
     detail: "Hero reveal · staggered choreography · kinetic CTA",
     accent: "rgba(255,0,0,0.45)",
-    image: "/phoenix.jpg",
+    image: "/rise-space-01/full.png",
   },
   {
     name: "Lenis Smooth",
     detail: "Chuyển cảnh lụa như lửa, điều khiển tốc độ cuộn",
     accent: "rgba(255,216,107,0.35)",
-    image: "/phoenix1.jpg",
+    image: "/rise-space-01/ta4.jpg",
   },
   {
     name: "magicui",
     detail: "Spotlight, glow grid, parallax flame layers",
     accent: "rgba(255,107,0,0.4)",
-    image: "/phoenix2.jpg",
+    image: "/rise-space-01/ta2.jpg",
   },
   {
     name: "motion-primitives",
     detail: "MotionButton · MotionCard với hiệu ứng spring",
     accent: "rgba(255,45,0,0.35)",
-    image: "/globe.svg",
+    image: "/rise-space-01/se6.jpg",
   },
   {
     name: "shadcn/ui",
     detail: "Button · Card · Typography tái thiết kế Phoenix",
     accent: "rgba(255,255,255,0.15)",
-    image: "/window.svg",
+    image: "/rise-space-01/gd3.jpg",
+  },
+  {
+    name: "shadcn/ui",
+    detail: "Button · Card · Typography tái thiết kế Phoenix",
+    accent: "rgba(255,255,255,0.15)",
+    image: "/rise-space-01/se5.jpg",
   },
 ];
 
@@ -86,22 +92,25 @@ export function MotionCarouselSection() {
       className="phoenix-section relative mt-20 overflow-hidden rounded-[32px] border border-white/10 bg-[#080607] px-6 py-16 md:px-12"
     >
       <BackgroundGrid className="opacity-40" />
-      <Spotlight className="top-[-10%] right-[15%] opacity-50" size={520} color="rgba(255,0,0,0.45)" />
+      <Spotlight
+        className="top-[-10%] right-[15%] opacity-50"
+        size={520}
+        color="rgba(255,0,0,0.45)"
+      />
       <div className="relative space-y-6 text-center">
-        <p className="text-sm uppercase tracking-[0.5em] text-white/60">Rise Space</p>
+        <p className="text-sm uppercase tracking-[0.5em] text-white/60">
+          PHOENIX
+        </p>
         <h2 className="text-3xl font-extrabold text-white md:text-5xl">
-          <GradientText>Không gian landing đầy chuyển động</GradientText>
+          <GradientText>RISE SPACE - KHÔNG GIAN ĐỂ VƯƠN MÌNH</GradientText>
         </h2>
         <p className="mx-auto max-w-3xl text-base text-white/75">
-          Kết hợp các thư viện motion hàng đầu để tạo trải nghiệm &quot;bùng nổ năng lượng&quot; đúng tinh thần Phoenix House.
+          SÂN CHƠI HỌC THUẬT TOP ĐẦU DÀNH CHO TÂN SINH VIÊN FPTU HCM
         </p>
       </div>
 
       <div className="mt-12 overflow-hidden">
-        <motion.div
-          className="flex gap-6"
-          animate={controls}
-        >
+        <motion.div className="flex gap-6" animate={controls}>
           {duplicated.map((lib, index) => (
             <motion.div
               key={`${lib.name}-${index}`}
@@ -122,4 +131,3 @@ export function MotionCarouselSection() {
     </section>
   );
 }
-
